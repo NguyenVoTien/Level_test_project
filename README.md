@@ -17,8 +17,8 @@ Generated with ❤️ from [DhiWise](https://www.dhiwise.com)
 ## Running in dev environment
 
 1.  `cd YOUR_APPLICATION`
-2.  `npm install`
-3.  `npm start`
+2.  `yarn`
+3.  `yarn start`
 
 ## .env file
 
@@ -70,20 +70,20 @@ You may create subdirectories inside src.
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.<br>
 
-### `npm run eject`
+### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -94,7 +94,7 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 You can install any dependencies (for example, React Router) with `npm`:
 
 ```sh
-npm install --save react-router
+yarn --save react-router
 ```
 
 Alternatively you may use `yarn`:
