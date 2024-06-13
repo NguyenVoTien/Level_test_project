@@ -1,7 +1,6 @@
 //* LIB
 import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 //* IMPORT
@@ -18,20 +17,21 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState([]);
+  const [email, setEmail] = useState("");
 
   const handleChange = (event) => {
-    setEmail({ ...email, [event.target.name]: event.target.value });
+    setEmail(event.target.value);
   };
 
   const Submit = async (event) => {
-    event.preventDefault(event);
+    event.preventDefault();
     let data = {
       email: email,
     };
-    await API.post(`/v1/auth/register`, data)
+
+    await API.post("/v1/auth/register", data)
       .then((res) => {
-        if (res.data.status === 200) {
+        if (res.data.status === 201) {
           alert("Register successfull. please check mail😍");
           navigate("/login");
         } else {
