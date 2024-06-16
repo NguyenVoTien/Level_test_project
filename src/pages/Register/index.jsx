@@ -29,7 +29,7 @@ const Register = () => {
       email: email,
     };
 
-    await API.post("/v1/auth/register", data)
+    await API.post("/auth/register", data)
       .then((res) => {
         if (res.data.status === 201) {
           alert("Register successfull. please check mail😍");
