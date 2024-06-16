@@ -1,5 +1,5 @@
 import axios from 'axios';
-import CsrfToken from 'common/helpers/csrfToken';
+
 
 const RandomIdDevice = () => {
     return Math.floor(Math.random() * Date.now()).toString(16);
@@ -20,7 +20,6 @@ const API = axios.create({
     headers: {
         "X-Device-Id": setDeviceIdInLocalStorage(),
         Accept: "application/json, text/plain, /",
-        'CSRF-Token': CsrfToken,
     }
 });
 

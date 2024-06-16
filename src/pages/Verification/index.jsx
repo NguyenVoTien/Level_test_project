@@ -39,8 +39,8 @@ const Verification = () => {
   };
 
   return (
-    <div class="p-4">
-      <h3 class="text-lg font-semibold mb-4">
+    <div className="p-4">
+      <h3 className="text-lg font-semibold mb-4">
         Chúc Mừng Bạn Đã Đăng Ký Thành Công, mật khẩu tôi sẽ gửi qua gmail, vui
         lòng chọn tiếp tục và check gmail để đăng nhập !!!
       </h3>
