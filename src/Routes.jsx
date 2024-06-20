@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Verification from "pages/Verification";
+import ProfilePage from "pages/ProfileUser";
 const Register = React.lazy(() => import("pages/Register"));
 const Login = React.lazy(() => import("pages/Login"));
 const ProjectRoutes = () => {
@@ -18,6 +19,7 @@ const ProjectRoutes = () => {
             path="/create/account/:email/:timeout/:userId/:token"
             element={<Verification />}
           />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
     </React.Suspense>

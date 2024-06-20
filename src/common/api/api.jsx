@@ -19,8 +19,9 @@ const API = axios.create({
   headers: {
     "X-Device-Id": setDeviceIdInLocalStorage(),
     "X-Csrf-Token": localStorage.getItem("csrfToken"),
+    Authorization: `Bearer ${localStorage.getItem("Token")}`,
+    Accept: "application/json",
   },
-  Accept: "application/json",
 });
 
 export default API;

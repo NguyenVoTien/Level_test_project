@@ -13,6 +13,7 @@ const Login = () => {
     },
   });
 
+  const [id, setId] = useState("");
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,15 +30,23 @@ const Login = () => {
     event.preventDefault();
     let data = { identifier: email, password: password };
 
-    await API.post("/auth/login-identifier", data)
-      .then((res) => {
-        if (res.data.status === 200) {
-          navigate("/");
+    try {
+      const res = await API.post("/auth/login-identifier", data);
+      if (res.data.status === 200) {
+        const newUserId = res.data.metadata.id;
+        const newAccessToken = res.data.metadata.accessToken;
+        if (res.data.metadata && newUserId) {
+          localStorage.setItem("userId", newUserId);
+          localStorage.setItem("Token", newAccessToken);
+          console.log(newUserId);
+          navigate("/profile");
+        } else {
+          console.error("UserId not found in response");
         }
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-      });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
   return (
