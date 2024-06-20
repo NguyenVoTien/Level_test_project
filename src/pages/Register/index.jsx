@@ -1,7 +1,7 @@
 //* LIB
 import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 //* IMPORT
 import { Button, CheckBox, FloatingInput, Img, Text } from "components";
@@ -28,10 +28,9 @@ const Register = () => {
     let data = {
       email: email,
     };
-
     await API.post("/auth/register", data)
       .then((res) => {
-        if (res.data.status === 201) {
+        if (res.data.status === 200) {
           alert("Register successfull. please check mail😍");
           navigate("/login");
         } else {

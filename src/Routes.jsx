@@ -15,7 +15,7 @@ const ProjectRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/create/account/:email/:userId/:version/:token"
+            path="/create/account/:email/:timeout/:userId/:token"
             element={<Verification />}
           />
         </Routes>

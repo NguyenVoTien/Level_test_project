@@ -5,10 +5,8 @@ import API from "common/api/api";
 // Giả sử bạn đã import API từ đâu đó
 
 const Verification = () => {
-  const { email, userId, version, token } = useParams();
+  const { email, timeout, userId, token } = useParams();
   const navigate = useNavigate();
-
-  const [verificationStatus, setVerificationStatus] = useState(null);
 
   useEffect(() => {
     const verifyAccount = async () => {
@@ -17,16 +15,16 @@ const Verification = () => {
           `/auth/veri-account?user_id=${userId}&token=${token}&email=${email}`
         );
 
-        if (res.data.success) {
-          setVerificationStatus("Verification successful. You can now log in.");
+        if (res.data.status === 200) {
+          alert("Register successfull. please check mail😍");
           // Navigate to login page after successful verification
           navigate("/login");
         } else {
-          setVerificationStatus("Verification failed. Please try again.");
+          alert("Registration failed. Please try again.");
         }
       } catch (error) {
         console.error("Error during verification:", error);
-        setVerificationStatus("An error occurred. Please try again later.");
+        alert("An error occurred. Please try again later.");
       }
     };
 
@@ -50,7 +48,6 @@ const Verification = () => {
       >
         Submit
       </Button>
-      {verificationStatus && <p class="mt-2">{verificationStatus}</p>}
     </div>
   );
 };

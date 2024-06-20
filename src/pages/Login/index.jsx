@@ -1,9 +1,9 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 
+import API from "common/api/api";
 import { Button, CheckBox, FloatingInput, Img, Line, Text } from "components";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const googleSignIn = useGoogleLogin({
@@ -13,9 +13,39 @@ const Login = () => {
     },
   });
 
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let data = { identifier: email, password: password };
+
+    await API.post("/auth/login-identifier", data)
+      .then((res) => {
+        if (res.data.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
+  };
+
   return (
     <>
-      <div className="bg-white-A700 h-[1117px] mx-auto p-[159px] md:px-10 sm:px-5 relative w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white-A700 h-[1117px] mx-auto p-[116px] md:px-10 sm:px-5 relative w-full"
+      >
         <Img
           className="absolute h-[519px] left-[13%] object-cover top-[14%] w-[28%]"
           src="images/img_31612531.png"
@@ -70,6 +100,7 @@ const Login = () => {
                       className="absolute bg-gray-100 border border-gray-400 border-solid flex flex-col h-max inset-[0] items-start justify-center m-auto p-[17px] rounded w-full"
                       size="txtSourceSansProSemiBold14Gray500"
                       placeholder="Username or Email..."
+                      onChange={handleChangeEmail}
                     />
                   </div>
                   <div className="absolute bg-gray-100 h-[7px] left-[4%] top-[0] w-[28%]"></div>
@@ -88,6 +119,7 @@ const Login = () => {
                       className="absolute bg-gray-100 border border-gray-400 border-solid flex flex-col h-max inset-[0] items-start justify-center m-auto p-[17px] rounded w-full"
                       size="txtSourceSansProSemiBold14Gray500"
                       placeholder="********************"
+                      onChange={handleChangePassword}
                     />
                   </div>
                   <div className="absolute bg-gray-100 h-[7px] left-[4%] top-[0] w-[28%]"></div>
@@ -155,7 +187,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };
