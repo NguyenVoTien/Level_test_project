@@ -21,6 +21,7 @@ const API = axios.create({
     "X-Csrf-Token": localStorage.getItem("csrfToken"),
     Authorization: `Bearer ${localStorage.getItem("Token")}`,
     Accept: "application/json",
+    "Content-Type": "application/json",
   },
 });
 

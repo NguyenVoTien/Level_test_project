@@ -4,6 +4,7 @@ import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Verification from "pages/Verification";
 import ProfilePage from "pages/ProfileUser";
+import UpdateProfile from "pages/UpdateProfile";
 const Register = React.lazy(() => import("pages/Register"));
 const Login = React.lazy(() => import("pages/Login"));
 const ProjectRoutes = () => {
@@ -20,6 +21,7 @@ const ProjectRoutes = () => {
             element={<Verification />}
           />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/update/profile" element={<UpdateProfile />} />
         </Routes>
       </Router>
     </React.Suspense>

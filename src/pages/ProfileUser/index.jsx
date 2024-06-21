@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import API from "common/api/api";
 
 const ProfilePage = () => {
   const [user, setUser] = useState("");
+
+  const navigate = useNavigate();
+
+  const redirectToUpdateProfile = () => {
+    navigate("/update/profile");
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -50,6 +56,12 @@ const ProfilePage = () => {
             <p className="text-lg font-semibold">
               Phone: <span className="font-normal">{item.phone}</span>
             </p>
+            <button
+              onClick={redirectToUpdateProfile}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Update Profile
+            </button>
           </div>
         ))
       ) : (
