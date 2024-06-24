@@ -18,10 +18,27 @@ const ProfilePage = () => {
     navigate("/Change/password");
   };
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await API.post("/user/logout", dataChange);
+      if (response.dataChange.status === 200) {
+        alert("Register successfull. please check mail😍");
+        // Navigate to login page after successful verification
+        navigate("/profile");
+      } else {
+        alert("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during verification:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        setIsLoading(true); // Bắt đầu tải dữ liệu
+        setIsLoading(true);
         const res = await API.get(`/user/profile/${userId}`);
         if (res.data.status === 200) {
           setUser(
@@ -72,6 +89,12 @@ const ProfilePage = () => {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Change Password
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Logout
             </button>
           </div>
         ))
