@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import API from "common/api/api";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Thêm state này
 
   const navigate = useNavigate();
+
+  const userId = localStorage.getItem("userId");
 
   const redirectToUpdateProfile = () => {
     navigate("/update/profile");
   };
 
+  const redirectToResetPassword = () => {
+    navigate("/password/reset");
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await API.get(
-          `/user/profile/${localStorage.getItem("userId")}`
-        );
+        setIsLoading(true); // Bắt đầu tải dữ liệu
+        const res = await API.get(`/user/profile/${userId}`);
         if (res.data.status === 200) {
           setUser(
             Array.isArray(res.data.metadata)
@@ -29,19 +34,19 @@ const ProfilePage = () => {
         }
       } catch (error) {
         console.error("Error:", error);
+      } finally {
+        setIsLoading(false); // Kết thúc tải dữ liệu
       }
     };
 
     fetchUserData();
-  }, []);
-
-  // if (!user) {
-  //   return <div className="text-center">Loading...</div>;
-  // }
+  }, [userId]);
 
   return (
     <div className="flex flex-col items-center justify-center">
-      {user.length > 0 ? (
+      {isLoading ? (
+        <div className="text-center p-4">Loading...</div>
+      ) : user.length > 0 ? (
         user.map((item, index) => (
           <div
             key={index}
@@ -62,10 +67,16 @@ const ProfilePage = () => {
             >
               Update Profile
             </button>
+            <button
+              onClick={redirectToResetPassword}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Reset Password
+            </button>
           </div>
         ))
       ) : (
-        <div className="text-center p-4">Loading...</div>
+        <div className="text-center p-4">No user data found.</div>
       )}
     </div>
   );
