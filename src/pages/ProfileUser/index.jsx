@@ -14,8 +14,8 @@ const ProfilePage = () => {
     navigate("/update/profile");
   };
 
-  const redirectToResetPassword = () => {
-    navigate("/password/reset");
+  const redirectToChangePassword = () => {
+    navigate("/Change/password");
   };
 
   useEffect(() => {
@@ -68,10 +68,10 @@ const ProfilePage = () => {
               Update Profile
             </button>
             <button
-              onClick={redirectToResetPassword}
+              onClick={redirectToChangePassword}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              Reset Password
+              Change Password
             </button>
           </div>
         ))

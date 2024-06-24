@@ -1,18 +1,17 @@
-//*LIB
+//* LIB
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-//* IMPORT
+//*IMPORT
 import API from "common/api/api";
 import { Button, Text } from "components";
 
-const ResetPasswordPage = () => {
-  const { timeout, user_id, token } = useParams();
+const ChangePass = () => {
   const [password, setPassword] = useState("");
   const [reEnterPassword, setReEnterPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChangePass = (e) => {
     setPassword(e.target.value);
   };
   const handleChangeReEnterPassword = (e) => {
@@ -25,13 +24,13 @@ const ResetPasswordPage = () => {
       alert("Passwords do not match. Please try again.");
       return;
     }
-    let dataReset = { password: password, user_id: user_id, token: token };
+    let dataChange = { password: password };
     try {
-      const response = await API.post("/auth/reset-password", dataReset);
-      if (response.dataReset.status === 200) {
+      const response = await API.post("/user/change-pass", dataChange);
+      if (response.dataChange.status === 200) {
         alert("Register successfull. please check mail😍");
         // Navigate to login page after successful verification
-        navigate("/login");
+        navigate("/profile");
       } else {
         alert("Registration failed. Please try again.");
       }
@@ -43,14 +42,14 @@ const ResetPasswordPage = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
+      <h2 className="text-xl font-semibold mb-4">Change Password</h2>
       <form onSubmit={handleSubmit}>
         <Text className="block mb-2">
           Password:
           <input
             type="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChangePass}
             required
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           />
@@ -75,4 +74,4 @@ const ResetPasswordPage = () => {
   );
 };
 
-export default ResetPasswordPage;
+export default ChangePass;

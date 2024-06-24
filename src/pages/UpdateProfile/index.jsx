@@ -38,7 +38,7 @@ function UpdateProfile() {
       phone: phone,
       fullname: fullname,
       avatar: avatar,
-      gender: parseInt(gender, 10), // Chuyển giá trị gender thành kiểu số
+      gender: parseInt(gender, 10),
     };
     try {
       const res = await API.post("/user/update-profile", formData);

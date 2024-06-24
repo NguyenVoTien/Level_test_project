@@ -6,6 +6,8 @@ import Verification from "pages/Verification";
 import ProfilePage from "pages/ProfileUser";
 import UpdateProfile from "pages/UpdateProfile";
 import ResetPasswordPage from "pages/ResetPass";
+import ForgetPage from "pages/ForgetPass";
+import ChangePass from "pages/ChangePass";
 const Register = React.lazy(() => import("pages/Register"));
 const Login = React.lazy(() => import("pages/Login"));
 const ProjectRoutes = () => {
@@ -23,7 +25,12 @@ const ProjectRoutes = () => {
           />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/update/profile" element={<UpdateProfile />} />
-          <Route path="/password/reset" element={<ResetPasswordPage />} />
+          <Route
+            path="/reset/password/:timeout/:user_id/:token"
+            element={<ResetPasswordPage />}
+          />
+          <Route path="/forget/password" element={<ForgetPage />} />
+          <Route path="/Change/password" element={<ChangePass />} />
         </Routes>
       </Router>
     </React.Suspense>

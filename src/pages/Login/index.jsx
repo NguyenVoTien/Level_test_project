@@ -25,6 +25,9 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+  const handleForgotPassword = () => {
+    navigate("/forget/password");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = { identifier: email, password: password };
@@ -147,12 +150,13 @@ const Login = () => {
                   id="rememberme"
                   label="Remember me"
                 ></CheckBox>
-                <Text
+                <button
                   className="text-black-900 text-center text-sm"
                   size="txtSourceSansProSemiBold14Black900"
+                  onClick={handleForgotPassword}
                 >
                   Forgot Password?
-                </Text>
+                </button>
               </div>
               <Button className="cursor-pointer font-semibold min-w-[435px] sm:min-w-full mt-3.5 text-base text-center">
                 Login
