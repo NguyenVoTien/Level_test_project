@@ -158,7 +158,10 @@ const Login = () => {
                   Forgot Password?
                 </button>
               </div>
-              <Button className="cursor-pointer font-semibold min-w-[435px] sm:min-w-full mt-3.5 text-base text-center">
+              <Button
+                className="cursor-pointer font-semibold min-w-[435px] sm:min-w-full mt-3.5 text-base text-center"
+                onClick={handleSubmit}
+              >
                 Login
               </Button>
             </div>

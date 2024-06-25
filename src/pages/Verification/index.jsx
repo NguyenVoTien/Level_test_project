@@ -33,7 +33,25 @@ const Verification = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // This function now doesn't need to do anything since navigation is handled in useEffect
+  };
+
+  const handleResendLink = async (event) => {
+    event.preventDefault();
+    const dataResend = { email: email };
+    try {
+      const response = await API.post(
+        "/auth/resend-link-verification",
+        dataResend
+      );
+      if (response.dataResend.status === 200) {
+        alert("Resend Link successfull. please check mail😍");
+      } else {
+        alert("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during verification:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -47,6 +65,12 @@ const Verification = () => {
         onClick={handleSubmit}
       >
         Submit
+      </Button>
+      <Button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={handleResendLink}
+      >
+        ResendLink
       </Button>
     </div>
   );

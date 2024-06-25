@@ -14,6 +14,10 @@ const ProfilePage = () => {
     navigate("/update/profile");
   };
 
+  const redirectToUpdateEmail = () => {
+    navigate("/update/email");
+  };
+
   const redirectToChangePassword = () => {
     navigate("/Change/password");
   };
@@ -25,7 +29,7 @@ const ProfilePage = () => {
       if (response.dataChange.status === 200) {
         alert("Register successfull. please check mail😍");
         // Navigate to login page after successful verification
-        navigate("/profile");
+        navigate("/login");
       } else {
         alert("Registration failed. Please try again.");
       }
@@ -38,7 +42,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        setIsLoading(true);
+        setIsLoading(false);
         const res = await API.get(`/user/profile/${userId}`);
         if (res.data.status === 200) {
           setUser(
@@ -78,11 +82,20 @@ const ProfilePage = () => {
             <p className="text-lg font-semibold">
               Phone: <span className="font-normal">{item.phone}</span>
             </p>
+            <p className="text-lg font-semibold">
+              FullName: <span className="font-normal">{item.fullname}</span>
+            </p>
             <button
               onClick={redirectToUpdateProfile}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Update Profile
+            </button>
+            <button
+              onClick={redirectToUpdateEmail}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Update Email
             </button>
             <button
               onClick={redirectToChangePassword}
