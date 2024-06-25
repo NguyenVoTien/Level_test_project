@@ -30,7 +30,7 @@ const Register = () => {
     };
     await API.post("/auth/register", data)
       .then((res) => {
-        if (res.data.status === 200) {
+        if (res.data.status === 201) {
           alert("Register successfull. please check mail😍");
           navigate("/login");
         } else {
