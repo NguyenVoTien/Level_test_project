@@ -15,8 +15,8 @@
 ## Running in dev environment
 
 1.  `cd YOUR_APPLICATION`
-2.  `yarn`
-3.  `yarn start`
+2.  `npm i`
+3.  `npm run start`
 
 ## .env file
 

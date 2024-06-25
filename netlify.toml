@@ -1,6 +1,6 @@
 [build]
-  command = "yarn build"
-  publish = "/publish"
+  command = "npm run build"
+ 
   base ="/"
 
 [[redirects]]
