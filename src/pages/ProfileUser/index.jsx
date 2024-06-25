@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "common/api/api";
+import { Text } from "components";
 
 const ProfilePage = () => {
   const [user, setUser] = useState([]);
@@ -22,6 +23,9 @@ const ProfilePage = () => {
     navigate("/Change/password");
   };
 
+  const redirectToTwoFactorEnabled = () => {
+    navigate("/Change/password");
+  };
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
@@ -73,42 +77,48 @@ const ProfilePage = () => {
             key={index}
             className="bg-white shadow-md rounded-lg p-4 mb-4 w-full max-w-md"
           >
-            <p className="text-lg font-semibold">
+            <Text className="text-lg font-semibold">
               Name: <span className="font-normal">{item.username}</span>
-            </p>
-            <p className="text-lg font-semibold">
+            </Text>
+            <Text className="text-lg font-semibold">
               Email: <span className="font-normal">{item.email}</span>
-            </p>
-            <p className="text-lg font-semibold">
+            </Text>
+            <Text className="text-lg font-semibold">
               Phone: <span className="font-normal">{item.phone}</span>
-            </p>
-            <p className="text-lg font-semibold">
+            </Text>
+            <Text className="text-lg font-semibold">
               FullName: <span className="font-normal">{item.fullname}</span>
-            </p>
-            <button
+            </Text>
+            <Button
               onClick={redirectToUpdateProfile}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Update Profile
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={redirectToUpdateEmail}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Update Email
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={redirectToChangePassword}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Change Password
-            </button>
-            <button
+            </Button>
+            <Button
+              onClick={redirectToTwoFactorEnabled}
+              className="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Two Factor Enabled
+            </Button>
+            <Button
               onClick={handleLogout}
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
               Logout
-            </button>
+            </Button>
           </div>
         ))
       ) : (
