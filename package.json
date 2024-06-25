@@ -21,8 +21,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy-surge": "sh ./deploy-surge.sh"
+    "preview": "vite preview"
+   
   },
   "eslintConfig": {
     "extends": [
