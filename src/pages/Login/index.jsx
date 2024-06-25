@@ -25,9 +25,6 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleForgotPassword = () => {
-    navigate("/forget/password");
-  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = { identifier: email, password: password };
@@ -150,12 +147,12 @@ const Login = () => {
                   id="rememberme"
                   label="Remember me"
                 />
-                <button
+                <Link
                   className="text-black text-center text-sm"
-                  onClick={handleForgotPassword}
+                  to="/forget/password"
                 >
                   Forgot Password?
-                </button>
+                </Link>
               </div>
               <Button
                 className="cursor-pointer font-semibold mt-3 text-base text-center w-full"
