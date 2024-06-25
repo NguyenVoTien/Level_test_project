@@ -1,6 +1,7 @@
 {
   "name": "test-2",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@react-oauth/google": "^0.2.6",
