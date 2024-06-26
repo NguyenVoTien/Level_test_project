@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 //*IMPORT
 import API from "common/api/api";
 import { Button, Text } from "components";
+import { Link } from "react-router-dom";
 
 const ChangePass = () => {
   const [password, setPassword] = useState("");
@@ -30,7 +31,7 @@ const ChangePass = () => {
       if (response.dataChange.status === 200) {
         alert("Register successfull. please check mail😍");
         // Navigate to login page after successful verification
-        navigate("/profile");
+        navigate("/login");
       } else {
         alert("Registration failed. Please try again.");
       }
@@ -69,6 +70,9 @@ const ChangePass = () => {
         >
           Send Reset
         </Button>
+        <Link className="text-black text-center text-sm" to="/profile">
+          Back
+        </Link>
       </form>
     </div>
   );

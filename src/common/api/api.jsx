@@ -15,7 +15,7 @@ const setDeviceIdInLocalStorage = () => {
 };
 
 const API = axios.create({
-  baseURL: "http://103.82.195.138:8000/v1",
+  baseURL: "https://103.82.195.138:8000/v1",
   headers: {
     "X-Device-Id": setDeviceIdInLocalStorage(),
     "X-Csrf-Token": localStorage.getItem("csrfToken"),

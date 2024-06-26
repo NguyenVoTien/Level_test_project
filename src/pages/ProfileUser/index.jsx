@@ -5,7 +5,7 @@ import { Text, Button } from "components"; // Assuming Button is also exported f
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null); // Changed to null if user is expected to be an object
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,9 +18,9 @@ const ProfilePage = () => {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    const dataChange = {}; // Define dataChange based on your needs
+
     try {
-      const response = await API.post("/user/logout", dataChange);
+      const response = await API.get("/user/logout");
       if (response.status === 200) {
         // Assuming response structure is corrected
         alert("Logout successful.");
@@ -38,13 +38,13 @@ const ProfilePage = () => {
     const fetchUserData = async () => {
       if (!userId) {
         console.log("userId is not valid:", userId);
-        setIsLoading(false);
+        setIsLoading(true);
         return;
       }
       try {
-        setIsLoading(true);
+        setIsLoading(false);
         const res = await API.get(`/user/profile/${userId}`);
-        if (res.status === 200) {
+        if (res.data.status === 200) {
           // Assuming response structure is corrected
           setUser(res.data.metadata);
         } else {
