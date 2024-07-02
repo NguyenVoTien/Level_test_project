@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const userId = localStorage.getItem("userId");
+  localStorage.getItem("Token");
 
   const redirectToUpdateProfile = () => navigate("/update/profile");
   const redirectToUpdateEmail = () => navigate("/update/email");
@@ -36,6 +37,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      console.log("userId:", userId);
       if (!userId) {
         console.log("userId is not valid:", userId);
         setIsLoading(true);
@@ -58,7 +60,7 @@ const ProfilePage = () => {
     };
 
     fetchUserData();
-  }, [userId]);
+  }, [userId, Token]);
 
   if (isLoading) {
     return <div className="text-center p-4">Loading...</div>;

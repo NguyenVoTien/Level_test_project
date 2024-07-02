@@ -30,12 +30,12 @@ const Home = () => {
       <div className="flex flex-row-reverse justify-between items-center w-full">
         <div className="flex flex-col items-start justify-start xl:w-1/2 md:w-full">
           <h2 className="mb-2 text-lg font-bold uppercase text-dark/75 dark:text-light/75">
-            Hi, I am TienFrdev
+            Hi, I am Tien.Fr.dev
           </h2>
           <p className="my-2 font-medium">
-            - Hi I am TienFrDev, a web developer and UI/UX designer with a
+            - Hi I am Tien.Fr.Dev, a web developer and UI/UX designer with a
             passion for creating beautiful, functional, and user-centered
-            digital experiences. With 4 years of experience in the field. I am
+            digital experiences. With one years of experience in the field. I am
             always looking for new and innovative ways to bring my client
             visions to life.
           </p>
