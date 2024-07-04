@@ -1,20 +1,46 @@
 //*LIB
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
+import {
+  LockOpenOutlined,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 
 //* IMPORT
-import API from "common/api/api";
-import { Button, Text } from "components";
+import API from "@/common/api/api";
 
 const ResetPasswordPage = () => {
   const { timeout, user_id, token } = useParams();
   const [password, setPassword] = useState("");
   const [reEnterPassword, setReEnterPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showReEnterPassword, setShowReEnterPassword] = useState(false);
+
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowReEnterPassword = () => {
+    setShowReEnterPassword(!showReEnterPassword);
+  };
+
   const handleChangeReEnterPassword = (e) => {
     setReEnterPassword(e.target.value);
   };
@@ -42,36 +68,93 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
-      <form onSubmit={handleSubmit}>
-        <Text className="block mb-2">
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </Text>
-        <Text className="block mb-2">
-          Re-enter Password:
-          <input
-            type="password"
-            onChange={handleChangeReEnterPassword}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </Text>
-        <Button
-          type="submit"
-          className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
+    <>
+      <Container maxWidth="sm" sx={{ mt: 8 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          Send Reset
-        </Button>
-      </form>
-    </div>
+          <LockOutlined sx={{ fontSize: 40, mb: 1 }} />
+          <Typography variant="h4" gutterBottom>
+            Reset Password
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ mt: 3, width: "100%" }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  variant="outlined"
+                  value={password}
+                  onChange={handleChangePassword}
+                  required
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Re-enter Password"
+                  type={showReEnterPassword ? "text" : "password"}
+                  variant="outlined"
+                  value={reEnterPassword}
+                  onChange={handleChangeReEnterPassword}
+                  required
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowReEnterPassword}
+                          edge="end"
+                        >
+                          {showReEnterPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Send Reset
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </>
   );
 };
 

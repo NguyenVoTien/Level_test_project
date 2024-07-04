@@ -1,10 +1,11 @@
 //*LIB
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
 
 //*IMPORT
-import API from "common/api/api";
-import { Button } from "components";
+import API from "@/common/api/api";
 
 const UpdateEmailWithOTP = () => {
   const [email, setEmail] = useState("");
@@ -59,40 +60,60 @@ const UpdateEmailWithOTP = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-bold">Update Email</h2>
-
-      <form className="flex flex-col space-y-4" onSubmit={handleSendOtp}>
-        <input
-          className="border border-gray-300 p-2 rounded-md"
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          placeholder="Enter your new email"
-          required
-        />
-        <Button className="bg-blue-500 text-white p-2 rounded-md" type="submit">
-          Send OTP
-        </Button>
-      </form>
-
-      <form
-        className="flex flex-col space-y-4 mt-4"
-        onSubmit={handleUpdateEmail}
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        <input
-          className="border border-gray-300 p-2 rounded-md"
-          type="text"
-          value={otp}
-          onChange={handleOtpChange}
-          placeholder="Enter OTP"
-          required
-        />
-        <Button className="bg-blue-500 text-white p-2 rounded-md" type="submit">
-          Update Email
-        </Button>
-      </form>
-    </div>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+          <EmailIcon sx={{ mr: 1 }} />
+          <Typography variant="h4">Update Email</Typography>
+        </Box>
+
+        <Box
+          component="form"
+          onSubmit={handleSendOtp}
+          sx={{ width: "100%", mt: 3 }}
+        >
+          <TextField
+            fullWidth
+            label="Enter your new email"
+            variant="outlined"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+            sx={{ mb: 2 }}
+          />
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Send OTP
+          </Button>
+        </Box>
+
+        <Box
+          component="form"
+          onSubmit={handleUpdateEmail}
+          sx={{ width: "100%", mt: 4 }}
+        >
+          <TextField
+            fullWidth
+            label="Enter OTP"
+            variant="outlined"
+            type="text"
+            value={otp}
+            onChange={handleOtpChange}
+            required
+            sx={{ mb: 2 }}
+          />
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Update Email
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

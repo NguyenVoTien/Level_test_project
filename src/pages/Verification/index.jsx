@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+//* LIB
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button } from "components";
-import API from "common/api/api";
-// Giả sử bạn đã import API từ đâu đó
+import { Container, Typography, Button, Box } from "@mui/material";
+
+//* IMPORT
+import API from "@/common/api/api";
 
 const Verification = () => {
   const { email, timeout, userId, token } = useParams();
@@ -55,24 +57,53 @@ const Verification = () => {
   };
 
   return (
-    <div className="p-4">
-      <h3 className="text-lg font-semibold mb-4">
-        Chúc Mừng Bạn Đã Đăng Ký Thành Công, mật khẩu tôi sẽ gửi qua gmail, vui
-        lòng chọn tiếp tục và check gmail để đăng nhập !!!
-      </h3>
-      <Button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
-      <Button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleResendLink}
-      >
-        ResendLink
-      </Button>
-    </div>
+    <>
+      <Container sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
+        <Typography
+          variant="h6"
+          component="h3"
+          fontWeight="bold"
+          mb={{ xs: 2, sm: 3, md: 4 }}
+        >
+          Chúc Mừng Bạn Đã Đăng Ký Thành Công, mật khẩu tôi sẽ gửi qua gmail,
+          vui lòng chọn tiếp tục và check gmail để đăng nhập !!!
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            gap: 2,
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit}
+            sx={{
+              backgroundColor: "blue",
+              "&:hover": {
+                backgroundColor: "darkblue",
+              },
+            }}
+          >
+            Submit
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleResendLink}
+            sx={{
+              backgroundColor: "blue",
+              "&:hover": {
+                backgroundColor: "darkblue",
+              },
+            }}
+          >
+            Resend Link
+          </Button>
+        </Box>
+      </Container>
+    </>
   );
 };
 

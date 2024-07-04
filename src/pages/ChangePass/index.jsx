@@ -1,11 +1,11 @@
 //* LIB
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Container, Typography, TextField, Button, Link } from "@mui/material";
 
 //*IMPORT
-import API from "common/api/api";
-import { Button, Text } from "components";
-import { Link } from "react-router-dom";
+import API from "@/common/api/api";
+
 
 const ChangePass = () => {
   const [password, setPassword] = useState("");
@@ -42,39 +42,54 @@ const ChangePass = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      <h2 className="text-xl font-semibold mb-4">Change Password</h2>
+    <Container maxWidth="sm" sx={{ mt: 4, px: { xs: 2, sm: 3, md: 4 } }}>
+      <Typography variant="h6" component="h2" fontWeight="bold" mb={4}>
+        Change Password
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <Text className="block mb-2">
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={handleChangePass}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </Text>
-        <Text className="block mb-2">
-          Re-enter Password:
-          <input
-            type="password"
-            onChange={handleChangeReEnterPassword}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </Text>
-        <Button
-          type="submit"
-          className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
-        >
-          Send Reset
-        </Button>
-        <Link className="text-black text-center text-sm" to="/profile">
-          Back
-        </Link>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              type="password"
+              label="Password"
+              value={password}
+              onChange={handleChangePass}
+              required
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              type="password"
+              label="Re-enter Password"
+              onChange={handleChangeReEnterPassword}
+              required
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 2, mb: 2 }}
+            >
+              Send Reset
+            </Button>
+          </Grid>
+          <Grid item xs={12} textAlign="center">
+            <Link href="/profile" sx={{ mt: 2 }}>
+              Back
+            </Link>
+          </Grid>
+        </Grid>
       </form>
-    </div>
+    </Container>
   );
 };
 

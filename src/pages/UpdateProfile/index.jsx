@@ -1,9 +1,11 @@
 //* LIB
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 //* IMPORT
-import API from "common/api/api";
+import API from "@/common/api/api";
 
 function UpdateProfile() {
   const navigate = useNavigate();
@@ -53,57 +55,77 @@ function UpdateProfile() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <label className="block">
-          Name:
-          <input
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+          <AccountCircleIcon sx={{ mr: 1 }} />
+          <Typography variant="h4">Update Profile</Typography>
+        </Box>
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ width: "100%", mt: 3 }}
+        >
+          <TextField
+            fullWidth
+            label="Name"
+            variant="outlined"
             type="text"
             onChange={handleChangeName}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            sx={{ mb: 2 }}
           />
-        </label>
-        <label className="block">
-          Phone:
-          <input
+          <TextField
+            fullWidth
+            label="Phone"
+            variant="outlined"
             type="number"
             onChange={handleChangePhone}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            sx={{ mb: 2 }}
           />
-        </label>
-        <label className="block">
-          Fullname:
-          <input
+          <TextField
+            fullWidth
+            label="Fullname"
+            variant="outlined"
             type="text"
             onChange={handleChangeFullname}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            sx={{ mb: 2 }}
           />
-        </label>
-        <label className="block">
-          Avatar:
-          <input
+          <TextField
+            fullWidth
+            label="Avatar"
+            variant="outlined"
             type="text"
             onChange={handleChangeAvatar}
-            placeholder="please insert your avatar url"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Please insert your avatar URL"
+            sx={{ mb: 2 }}
           />
-        </label>
-        <label className="block">
-          Gender:
-          <input
+          <TextField
+            fullWidth
+            label="Gender"
+            variant="outlined"
             type="number"
             onChange={handleChangeGender}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            sx={{ mb: 2 }}
           />
-        </label>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600"
-        >
-          Update Profile
-        </button>
-      </form>
-    </div>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{ mt: 2 }}
+          >
+            Update Profile
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }
 

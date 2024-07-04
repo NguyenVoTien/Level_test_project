@@ -1,8 +1,19 @@
-import API from "common/api/api";
-import { Button, Text } from "components";
+//*LIB
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  Grid,
+  Link,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { LockOpenOutlined } from '@mui/icons-material';
+
+//*IMPORT
+import API from "@/common/api/api";
 
 const ForgetPage = () => {
   const navigate = useNavigate();
@@ -34,38 +45,52 @@ const ForgetPage = () => {
 
   return (
     <>
-      <form onSubmit={handleResetPass}>
-        <div className="flex flex-col space-y-4">
-          <Text
-            htmlFor="email"
-            className="block text-sm font-semibold text-gray-900"
+      <Container maxWidth="sm" sx={{ mt: 8 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <LockOpenOutlined sx={{ fontSize: 40, mb: 1 }} />
+          <Typography variant="h4" gutterBottom>
+          Forget Password
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleResetPass}
+            sx={{ mt: 3, width: "100%" }}
           >
-            Email
-          </Text>
-          <input
-            id="email"
-            type="email"
-            className="min-w-0 block w-[50%] sm:w-3/4 md:w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
-            placeholder="Username or Email..."
-            onChange={handleChangeEmail}
-          />
-          <Button
-            type="submit"
-            className="mt-2 w-[15%] sm:w-1/4 md:w-1/5 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Send Forget Password
-          </Button>
-        </div>
-      </form>
-      <Link
-        className="mt-2 w-[15%] sm:w-1/4 md:w-1/5 flex 
-           justify-center py-2 px-4 border border-transparent rounded-md 
-            shadow-sm text-sm font-medium text-gray-600 bg-gray-100
-          hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-        to="/login"
-      >
-        Back
-      </Link>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Email Address"
+                  variant="outlined"
+                  value={email}
+                  onChange={handleChangeEmail}
+                  required
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Send Reset Link
+            </Button>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Link href="/login" variant="body2">
+                Already have an account? Sign In
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 };

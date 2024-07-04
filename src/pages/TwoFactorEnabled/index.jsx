@@ -1,6 +1,15 @@
+//* LIB
 import React, { useState } from "react";
-import axios from "axios";
-import API from "common/api/api";
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
+
+//*IMPORT
+import API from "@/common/api/api";
 
 const TwoFactorEnabled = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -26,14 +35,32 @@ const TwoFactorEnabled = () => {
   };
 
   return (
-    <div>
-      <h2>Two-Factor Authentication</h2>
-      <p>Status: {isEnabled ? "Enabled" : "Disabled"}</p>
-      <button onClick={toggleTwoFactor} disabled={loading}>
-        {loading ? "Processing..." : isEnabled ? "Disable" : "Enable"}{" "}
-        Two-Factor Authentication
-      </button>
-    </div>
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Two-Factor Authentication
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Status: {isEnabled ? "Enabled" : "Disabled"}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={toggleTwoFactor}
+          disabled={loading}
+          startIcon={loading && <CircularProgress size={20} />}
+        >
+          {loading ? "Processing..." : isEnabled ? "Disable" : "Enable"}{" "}
+          Two-Factor Authentication
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
